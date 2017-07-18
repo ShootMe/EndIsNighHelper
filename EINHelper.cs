@@ -347,10 +347,10 @@ namespace EndIsNigh {
 					int cartLives = Memory.CartLives();
 					int cartContinues = cartLives / 10;
 
-					if (world.X != lastX || world.Y != lastY) {
+					if ((world.X != lastX || world.Y != lastY) && mapRevCoords.Count > 0) {
 						lastX = world.X;
 						lastY = world.Y;
-						lastMap = mapRevCoords[new Point(lastX, lastY)];
+						mapRevCoords.TryGetValue(new Point(lastX, lastY), out lastMap);
 						gameMap.SelectedCell = cells[lastY, lastX];
 						savedPos = null;
 					}

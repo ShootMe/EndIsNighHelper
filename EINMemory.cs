@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Text;
 namespace EndIsNigh {
 	public partial class EINMemory {
 		public Process Program { get; set; }
@@ -24,9 +19,13 @@ namespace EndIsNigh {
 			ProgramPointer.PLAYERDATA.Write<int>(Program, x, 0x10, -0x60, 0x18, 0x90, 0x130);
 			ProgramPointer.PLAYERDATA.Write<int>(Program, y, 0x10, -0x60, 0x18, 0x90, 0x134);
 			ProgramPointer.PLAYERDATA.Write<int>(Program, 0, 0x10, -0x60, 0x18, 0x90, 0x144);
-			ProgramPointer.PLAYERDATA.Write<int>(Program, 0, 0x10, -0x60, 0x18, 0x90, 0x148);
-			ProgramPointer.PLAYERDATA.Write<bool>(Program, true, 0x10, -0x60, 0x18, 0x90, 0x12c, 0xb8);
-			ProgramPointer.PLAYERDATA.Write<double>(Program, 0, 0x10, -0x60, 0x18, 0x90, 0x12c, 0xc0);
+			ProgramPointer.PLAYERDATA.Write<int>(Program, 9, 0x10, -0x60, 0x18, 0x90, 0x148);
+			if (x == 60 && (y == 27 || y == 28)) {
+				while (ProgramPointer.PLAYERDATA.Read<int>(Program, 0x10, -0x60, 0x18, 0x90, 0x148) != 0) {
+					System.Threading.Thread.Sleep(5);
+				}
+				SetPlayerPosition(21, 28);
+			}
 		}
 		public PointD PlayerPosition() {
 			double x = ProgramPointer.PLAYERDATA.Read<double>(Program, 0x10, -0x60, 0x18, 0x90, 0x12c, 0x18, 0x28);

@@ -219,11 +219,11 @@ namespace EndIsNigh {
 			for (int i = 1; i <= 8; i++) {
 				idToEntry.Add("i1-" + i, "Denial 1-" + i + ",6c88ce");
 				if (i <= 7) {
-					idToEntry.Add("i2-" + i, "Denial 2-" + i + ",6c88ce");
+					idToEntry.Add("i2-" + i, "Anger 2-" + i + ",aa63ce");
 				}
 				if (i <= 6) {
-					idToEntry.Add("i3-" + i, "Denial 3-" + i + ",6c88ce");
-					idToEntry.Add("i4-" + i, "Denial 4-" + i + ",6c88ce");
+					idToEntry.Add("i3-" + i, "Bargaining 3-" + i + ",805053");
+					idToEntry.Add("i4-" + i, "Depression 4-" + i + ",271d1b");
 				}
 
 				if (i <= 7) {
@@ -231,24 +231,24 @@ namespace EndIsNigh {
 				}
 				if (i > 1) {
 					if (i <= 6) {
-						idToEntry.Add("$i2-" + i, "Acceptance 2-" + i + ",4a5d8d");
+						idToEntry.Add("$i2-" + i, "Anger 2-" + i + ",aa63ce");
 					}
 					if (i <= 5) {
-						idToEntry.Add("$i3-" + i, "Acceptance 3-" + i + ",4a5d8d");
-						idToEntry.Add("$i4-" + i, "Acceptance 4-" + i + ",4a5d8d");
+						idToEntry.Add("$i3-" + i, "Bargaining 3-" + i + ",805053");
+						idToEntry.Add("$i4-" + i, "Depression 4-" + i + ",271d1b");
 					}
 				}
 				if (i <= 5) {
-					idToEntry.Add("i5-" + i, "Acceptance 5-" + i + ",4a5d8d");
+					idToEntry.Add("i5-" + i, "Acceptance 5-" + i + ",828377");
 				}
 			}
 			idToEntry.Add("$i1-8x", "Acceptance 1-8,4a5d8d");
-			idToEntry.Add("$i2-1x", "Acceptance 2-1,4a5d8d");
-			idToEntry.Add("$i2-7x", "Acceptance 2-7,4a5d8d");
-			idToEntry.Add("$i3-1x", "Acceptance 3-1,4a5d8d");
-			idToEntry.Add("$i3-6x", "Acceptance 3-6,4a5d8d");
-			idToEntry.Add("$i4-1x", "Acceptance 4-1,4a5d8d");
-			idToEntry.Add("$i4-6x", "Acceptance 4-6,4a5d8d");
+			idToEntry.Add("$i2-1x", "Anger 2-1,aa63ce");
+			idToEntry.Add("$i2-7x", "Anger 2-7,aa63ce");
+			idToEntry.Add("$i3-1x", "Bargaining 3-1,805053");
+			idToEntry.Add("$i3-6x", "Bargaining 3-6,805053");
+			idToEntry.Add("$i4-1x", "Depression 4-1,271d1b");
+			idToEntry.Add("$i4-6x", "Depression 4-6,271d1b");
 		}
 		private void InitializeMiniMap() {
 			InitializeLevelEntries();

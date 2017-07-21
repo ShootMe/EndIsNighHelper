@@ -415,7 +415,6 @@ namespace EndIsNigh {
 			if (savedPos.HasValue) {
 				Memory.SetPlayerPosition(savedPos.Value.X, savedPos.Value.Y);
 			}
-			Memory.SetPlayerPosition(10, 10);
 		}
 		private void btnSavePosition_Click(object sender, EventArgs e) {
 			savedPos = Memory.PlayerPosition();

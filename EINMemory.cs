@@ -117,7 +117,7 @@ namespace EndIsNigh {
 		}
 	}
 	public class ProgramPointer {
-		public static ProgramPointer PLAYERDATA = new ProgramPointer(PointerType.PlayerData, false, 0x2718BC);
+		public static ProgramPointer PLAYERDATA = new ProgramPointer(PointerType.PlayerData, true, new ProgramSignature(PointerVersion.V1, "5F797363616C65000000000000000000070000000F0000005F63757272656E746672616D65|-76"));
 
 		private int lastID;
 		private DateTime lastTry;

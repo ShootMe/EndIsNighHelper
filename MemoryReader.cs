@@ -169,7 +169,7 @@ namespace EndIsNigh {
 				long regionSize = (long)memInfo.RegionSize;
 				if (regionSize <= 0) { break; }
 
-				if (regionSize < 10485760 && (memInfo.Protect & 0x100) == 0 && (memInfo.Protect & 0x40) != 0 && (memInfo.Type & 0x20000) != 0 && memInfo.State == 0x1000) {
+				if (regionSize < 10485760 && (memInfo.Protect & 0x4) != 0 && (memInfo.AllocationProtect & 0x80) != 0 && (memInfo.Type & 0x1000000) != 0 && memInfo.State == 0x1000) {
 					byte[] buffer = new byte[regionSize];
 
 					int bytesRead = 0;

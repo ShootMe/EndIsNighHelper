@@ -249,11 +249,37 @@ namespace EndIsNigh {
 			idToEntry.Add("$i3-6x", "Bargaining 3-6,805053");
 			idToEntry.Add("$i4-1x", "Depression 4-1,271d1b");
 			idToEntry.Add("$i4-6x", "Depression 4-6,271d1b");
+
+			ReadLevelInfoFromFileSystem();
+		}
+		private string ReadLevelInfoFromFileSystem() {
+			try {
+				string info = Path.Combine(Path.GetDirectoryName(Memory.Program.MainModule.FileName), "data", "levelinfo.txt");
+				using (StreamReader sr = new StreamReader(info)) {
+					while (!sr.EndOfStream) {
+						string line = sr.ReadLine();
+						int index = line.IndexOf('"', 1);
+						string mapID = line.Substring(1, index - 1);
+						if (!idToEntry.ContainsKey(mapID)) {
+							index = line.IndexOf('"', index + 1);
+							string mapName = line.Substring(index + 1, line.IndexOf('"', index + 1) - index - 1);
+							idToEntry.Add(mapID, mapName);
+						}
+					}
+				}
+			} catch { }
+			return null;
 		}
 		private void InitializeMiniMap() {
 			InitializeLevelEntries();
 
-			string mapCSV = ReadCSVFromGPAK();
+			string mapCSV = ReadCSVFromFileSystem();
+			if (string.IsNullOrEmpty(mapCSV)) {
+				mapCSV = ReadCSVFromGPAK();
+			}
+
+			if (string.IsNullOrEmpty(mapCSV)) { return; }
+
 			DataTable map = CSV.ToDataTable(mapCSV, ',', false);
 			cells = new MiniMapCell[map.Rows.Count, map.Columns.Count];
 
@@ -279,41 +305,53 @@ namespace EndIsNigh {
 
 			gameMap.Cells = cells;
 		}
+		private string ReadCSVFromFileSystem() {
+			try {
+				string csv = Path.Combine(Path.GetDirectoryName(Memory.Program.MainModule.FileName), "data", "map.csv");
+				if (File.Exists(csv)) {
+					return File.ReadAllText(csv);
+				}
+			} catch { }
+			return null;
+		}
 		private string ReadCSVFromGPAK() {
-			string gpak = Path.Combine(Path.GetDirectoryName(Memory.Program.MainModule.FileName), "game.gpak");
+			try {
+				string gpak = Path.Combine(Path.GetDirectoryName(Memory.Program.MainModule.FileName), "game.gpak");
 
-			byte[] csvData = null;
-			using (FileStream file = new FileStream(gpak, FileMode.Open)) {
-				int count = ReadInt(file);
-				int position = 0;
-				int csvLength = 0;
+				byte[] csvData = null;
+				using (FileStream file = new FileStream(gpak, FileMode.Open)) {
+					int count = ReadInt(file);
+					int position = 0;
+					int csvLength = 0;
 
-				bool foundCSV = false;
-				for (int i = 0; i < count; i++) {
-					int textLen = ReadShort(file);
+					bool foundCSV = false;
+					for (int i = 0; i < count; i++) {
+						int textLen = ReadShort(file);
 
-					string path = ReadText(file, textLen);
-					if (!foundCSV && path.IndexOf("map.csv", StringComparison.OrdinalIgnoreCase) > 0) {
-						foundCSV = true;
+						string path = ReadText(file, textLen);
+						if (!foundCSV && path.IndexOf("map.csv", StringComparison.OrdinalIgnoreCase) > 0) {
+							foundCSV = true;
+						}
+
+						if (!foundCSV) {
+							position += ReadInt(file);
+						} else if (csvLength == 0) {
+							csvLength = ReadInt(file);
+							csvData = new byte[csvLength];
+						} else {
+							ReadInt(file);
+						}
 					}
 
-					if (!foundCSV) {
-						position += ReadInt(file);
-					} else if (csvLength == 0) {
-						csvLength = ReadInt(file);
-						csvData = new byte[csvLength];
-					} else {
-						ReadInt(file);
-					}
+					file.Position += position;
+
+					file.Read(csvData, 0, csvLength);
+					file.Close();
 				}
 
-				file.Position += position;
-
-				file.Read(csvData, 0, csvLength);
-				file.Close();
-			}
-
-			return Encoding.UTF8.GetString(csvData);
+				return Encoding.UTF8.GetString(csvData);
+			} catch { }
+			return null;
 		}
 		private int ReadInt(FileStream file) {
 			byte[] data = new byte[4];

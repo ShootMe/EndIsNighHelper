@@ -291,8 +291,12 @@ namespace EndIsNigh {
 						mapID = mapID.Replace(".lvl", "");
 						if (mapID != "..") {
 							Point pos = new Point(j, i);
-							mapCoords.Add(mapID, pos);
-							mapRevCoords.Add(pos, mapID);
+							if (!mapCoords.ContainsKey(mapID)) {
+								mapCoords.Add(mapID, pos);
+							}
+							if (!mapRevCoords.ContainsKey(pos)) {
+								mapRevCoords.Add(pos, mapID);
+							}
 							LevelEntry entry = null;
 							idToEntry.TryGetValue(mapID, out entry);
 							cells[i, j] = new MiniMapCell(mapID, string.IsNullOrEmpty(entry?.Name) ? "???" : entry?.Name, j, i, CellType.Normal, (entry?.Color).GetValueOrDefault(Color.White));
@@ -389,7 +393,9 @@ namespace EndIsNigh {
 						lastX = world.X;
 						lastY = world.Y;
 						mapRevCoords.TryGetValue(new Point(lastX, lastY), out lastMap);
-						gameMap.SelectedCell = cells[lastY, lastX];
+						if (lastMap != null) {
+							gameMap.SelectedCell = cells[lastY, lastX];
+						}
 						savedPos = null;
 					}
 
@@ -434,7 +440,9 @@ namespace EndIsNigh {
 					lastPlayer = player;
 
 					LevelEntry entry = null;
-					idToEntry.TryGetValue(lastMap, out entry);
+					if (lastMap != null) {
+						idToEntry.TryGetValue(lastMap, out entry);
+					}
 
 					lblWorldPosition.Text = "World: (" + world.X + ", " + world.Y + ")";
 					lblCurrentMap.Text = "Current Map: " + entry?.Name + " (" + lastMap + ")";

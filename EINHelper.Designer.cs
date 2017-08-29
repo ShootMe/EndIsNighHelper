@@ -163,6 +163,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(769, 561);
+			this.Controls.Add(this.lblNote);
 			this.Controls.Add(this.chkInfiniteLives);
 			this.Controls.Add(this.chkAutoSave);
 			this.Controls.Add(this.lblInfo);
@@ -173,7 +174,6 @@
 			this.Controls.Add(this.btnMove);
 			this.Controls.Add(this.lblPlayerPosition);
 			this.Controls.Add(this.lblWorldPosition);
-			this.Controls.Add(this.lblNote);
 			this.MinimumSize = new System.Drawing.Size(600, 400);
 			this.Name = "EINHelper";
 			this.ShowIcon = false;

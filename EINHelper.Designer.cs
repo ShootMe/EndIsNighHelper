@@ -43,7 +43,7 @@
 			this.lblNote.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblNote.Location = new System.Drawing.Point(0, 0);
 			this.lblNote.Name = "lblNote";
-			this.lblNote.Size = new System.Drawing.Size(784, 561);
+			this.lblNote.Size = new System.Drawing.Size(769, 561);
 			this.lblNote.TabIndex = 3;
 			this.lblNote.Text = "Not available";
 			this.lblNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -70,7 +70,7 @@
 			// 
 			// btnMove
 			// 
-			this.btnMove.Location = new System.Drawing.Point(210, 92);
+			this.btnMove.Location = new System.Drawing.Point(210, 98);
 			this.btnMove.Name = "btnMove";
 			this.btnMove.Size = new System.Drawing.Size(92, 23);
 			this.btnMove.TabIndex = 5;
@@ -80,7 +80,7 @@
 			// 
 			// btnSavePosition
 			// 
-			this.btnSavePosition.Location = new System.Drawing.Point(122, 92);
+			this.btnSavePosition.Location = new System.Drawing.Point(122, 98);
 			this.btnSavePosition.Name = "btnSavePosition";
 			this.btnSavePosition.Size = new System.Drawing.Size(82, 23);
 			this.btnSavePosition.TabIndex = 11;
@@ -97,11 +97,11 @@
 			this.gameMap.Cells = null;
 			this.gameMap.ErrorImage = null;
 			this.gameMap.InitialImage = null;
-			this.gameMap.Location = new System.Drawing.Point(-1, 121);
+			this.gameMap.Location = new System.Drawing.Point(-1, 125);
 			this.gameMap.Name = "gameMap";
 			this.gameMap.SelectedCell = null;
 			this.gameMap.SelectedCellColor = System.Drawing.Color.Gold;
-			this.gameMap.Size = new System.Drawing.Size(786, 441);
+			this.gameMap.Size = new System.Drawing.Size(771, 437);
 			this.gameMap.TabIndex = 12;
 			this.gameMap.TabStop = false;
 			this.gameMap.ClickedCell += new EndIsNigh.MiniMap.ClickedCellEventArgs(this.gameMap_ClickedCell);
@@ -111,7 +111,7 @@
 			// 
 			this.lblHoverText.AutoSize = true;
 			this.lblHoverText.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblHoverText.Location = new System.Drawing.Point(4, 125);
+			this.lblHoverText.Location = new System.Drawing.Point(83, 77);
 			this.lblHoverText.Name = "lblHoverText";
 			this.lblHoverText.Size = new System.Drawing.Size(48, 18);
 			this.lblHoverText.TabIndex = 13;
@@ -141,7 +141,7 @@
 			// chkAutoSave
 			// 
 			this.chkAutoSave.AutoSize = true;
-			this.chkAutoSave.Location = new System.Drawing.Point(19, 96);
+			this.chkAutoSave.Location = new System.Drawing.Point(19, 102);
 			this.chkAutoSave.Name = "chkAutoSave";
 			this.chkAutoSave.Size = new System.Drawing.Size(97, 17);
 			this.chkAutoSave.TabIndex = 16;
@@ -151,7 +151,7 @@
 			// chkInfiniteLives
 			// 
 			this.chkInfiniteLives.AutoSize = true;
-			this.chkInfiniteLives.Location = new System.Drawing.Point(308, 96);
+			this.chkInfiniteLives.Location = new System.Drawing.Point(308, 102);
 			this.chkInfiniteLives.Name = "chkInfiniteLives";
 			this.chkInfiniteLives.Size = new System.Drawing.Size(119, 17);
 			this.chkInfiniteLives.TabIndex = 17;
@@ -162,8 +162,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 561);
-			this.Controls.Add(this.lblNote);
+			this.ClientSize = new System.Drawing.Size(769, 561);
 			this.Controls.Add(this.chkInfiniteLives);
 			this.Controls.Add(this.chkAutoSave);
 			this.Controls.Add(this.lblInfo);
@@ -174,6 +173,7 @@
 			this.Controls.Add(this.btnMove);
 			this.Controls.Add(this.lblPlayerPosition);
 			this.Controls.Add(this.lblWorldPosition);
+			this.Controls.Add(this.lblNote);
 			this.MinimumSize = new System.Drawing.Size(600, 400);
 			this.Name = "EINHelper";
 			this.ShowIcon = false;

@@ -252,7 +252,7 @@ namespace EndIsNigh {
 
 			ReadLevelInfoFromFileSystem();
 		}
-		private string ReadLevelInfoFromFileSystem() {
+		private void ReadLevelInfoFromFileSystem() {
 			try {
 				string info = Path.Combine(Path.GetDirectoryName(Memory.Program.MainModule.FileName), "data", "levelinfo.txt");
 				using (StreamReader sr = new StreamReader(info)) {
@@ -268,7 +268,6 @@ namespace EndIsNigh {
 					}
 				}
 			} catch { }
-			return null;
 		}
 		private void InitializeMiniMap() {
 			InitializeLevelEntries();
@@ -278,9 +277,18 @@ namespace EndIsNigh {
 				mapCSV = ReadCSVFromGPAK();
 			}
 
-			if (string.IsNullOrEmpty(mapCSV)) { return; }
+			if (string.IsNullOrEmpty(mapCSV)) {
+				MessageBox.Show("Failed to read Map.csv", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 
-			DataTable map = CSV.ToDataTable(mapCSV, ',', false);
+			DataTable map = null;
+			try {
+				map = CSV.ToDataTable(mapCSV, ',', false);
+			} catch (Exception ex) {
+				MessageBox.Show("Failed to read Map.csv " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
 			cells = new MiniMapCell[map.Rows.Count, map.Columns.Count];
 
 			for (int i = 0; i < map.Rows.Count; i++) {

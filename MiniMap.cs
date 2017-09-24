@@ -130,7 +130,7 @@ namespace EndIsNigh {
 				}
 			}
 
-			if (cellX != lastCellPosition.X || cellY != lastCellPosition.Y) {
+			if ((cellX != lastCellPosition.X || cellY != lastCellPosition.Y) && cellX >= 0 && cellY >= 0) {
 				lastCellPosition = new Point(cellX, cellY);
 				MiniMapCell hoverCell = cells[cellY, cellX];
 				HoverOverCell?.Invoke(this, hoverCell);

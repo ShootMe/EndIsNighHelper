@@ -185,7 +185,7 @@ public static class CSV {
 					field.Length = 0;
 					if (d == delimiter) {
 						if (f == dt.Columns.Count) {
-							throw new Exception("Found too many columns on data row " + dt.Rows.Count + 1 + ".");
+							throw new Exception("Found too many columns on data row " + (dt.Rows.Count + 1) + ".");
 						} else if (end) {
 							row[f++] = string.Empty;
 						}

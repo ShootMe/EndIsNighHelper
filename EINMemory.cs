@@ -3,10 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 namespace EndIsNigh {
 	public partial class EINMemory {
-		public static ProgramPointer PlayerData = new ProgramPointer(AutoDeref.None,
-			new ProgramSignature(PointerVersion.Steam1, "0c656e646e6967682e73776600", -0x11f),
-			new ProgramSignature(PointerVersion.Steam2, "0b656e646e6967682e73776600", -0x11f)
-		);
+		public static ProgramPointer PlayerData = new ProgramPointer(AutoDeref.None, new ProgramSignature(PointerVersion.Steam, "656e646e6967682e73776600????????????????????????656e646c6f616465", -0x120));
 		public Process Program { get; set; }
 		public bool IsHooked { get; set; } = false;
 		private DateTime lastHooked = DateTime.MinValue;
@@ -108,8 +105,7 @@ namespace EndIsNigh {
 	}
 
 	public enum PointerVersion {
-		Steam1,
-		Steam2
+		Steam
 	}
 	public enum AutoDeref {
 		None,

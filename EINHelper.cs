@@ -321,7 +321,11 @@ namespace EndIsNigh {
 			try {
 				string csv = Path.Combine(Path.GetDirectoryName(Memory.Program.MainModule.FileName), "data", "map.csv");
 				if (File.Exists(csv)) {
-					return File.ReadAllText(csv);
+					using (FileStream file = new FileStream(csv, FileMode.Open, FileAccess.Read)) {
+						using (StreamReader reader = new StreamReader(file)) {
+							return reader.ReadToEnd();
+						}
+					}
 				}
 			} catch { }
 			return null;
@@ -331,7 +335,7 @@ namespace EndIsNigh {
 				string gpak = Path.Combine(Path.GetDirectoryName(Memory.Program.MainModule.FileName), "game.gpak");
 
 				byte[] csvData = null;
-				using (FileStream file = new FileStream(gpak, FileMode.Open)) {
+				using (FileStream file = new FileStream(gpak, FileMode.Open, FileAccess.Read)) {
 					int count = ReadInt(file);
 					int position = 0;
 					int csvLength = 0;
